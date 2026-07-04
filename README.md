@@ -28,6 +28,19 @@ npm run preview  # pré-visualizar o build
 7. **Download** — painel com botões "Em breve" da Google Play e App Store
 8. **Footer**
 
+## Dados estáticos do app (public/data)
+
+O site também serve os dados da Defesa Civil que o app mobile consome para se manter atualizado
+sem release nas lojas: `https://sosalagamento.netlify.app/data/versao.json` (+ `sirenes.json`,
+`pontos_apoio.json`, `areas_risco.json`, `rotas_fuga.json`).
+
+Para atualizar esses dados:
+
+1. Rode a API geradora local (`SOS_Petropolis__API`, controller `DefCivilPetropolisControler`)
+   e dispare os POSTs `v1/dados/defCivil/*` no Swagger — os arquivos saem em `SosPetropolis.Api/out/`
+2. Copie os JSONs gerados para `public/data/` deste repo e para `src/assets/dados/` do app
+3. Commit + push aqui: o Netlify publica e o app baixa sozinho ao detectar `versao.json` novo
+
 ## Quando o app for publicado
 
 Edite [src/constants.js](src/constants.js) com os links das lojas e troque os botões desabilitados em
